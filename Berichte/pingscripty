@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+
+ 
+SUBNET=${1:-"192.168.1.0/24"}
+
+CONCURRENCY=${2:-100}
+ 
+
+if ! command -v python3 >/dev/null 2>&1; then
+
+  echo "Fehler: python3 wird benötigt." >&2
+
+  exit 2
+
+fi
+ 
+PING_CMD_BASE="ping -c1 -W1"   # -c1 = 1 Paket, -W1 = Timeout 1 Sekunde (Linux)
+  
+python3 - <<PY
+
+import sys, ipaddress
+
+try:
+
+    net = ipaddress.ip_network("$SUBNET", strict=False)
+
+except Exception as e:
+
+    print("Fehler beim Parsen des Subnets:", e, file=sys.stderr)
+
+    sys.exit(1)
+
+
+for ip in net.hosts():
+
+    print(ip)
+
+PY
+
+| xargs -n1 -P "$CONCURRENCY" -I{} sh -c '
+
+  '"$PING_CMD_BASE"' {} >/dev/null 2>&1 && echo {}
+
+'
+ 
+
+ 
