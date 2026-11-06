@@ -151,4 +151,4 @@ Die Angriffskette Schritt für Schritt (nach MITRE-ATT&CK-Logik):
 
 ## Hinweis zur KI-Unterstützung
 
-Recherche, Gliederung und erster Textentwurf dieses Reports wurden mit **Claude Opus 5.5** (Anthropic) erstellt. Das Team hat die Inhalte anhand der angegebenen Quellen geprüft und überarbeitet. Geschätzter KI-Anteil: _[xx] %_ (vom Team anzupassen).
+Recherche, Gliederung und erster Textentwurf dieses Reports wurden mit **Claude Opus 5.5** (Anthropic) erstellt. Das Team hat die Inhalte anhand der angegebenen Quellen geprüft und überarbeitet. Geschätzter KI-Anteil: 60%.
